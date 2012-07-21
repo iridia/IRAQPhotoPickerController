@@ -13,7 +13,6 @@
 @interface IRAQPhotoPickerController () <IRAQAlbumListViewControllerDelegate>
 
 @property (nonatomic, readonly, copy) IRAQPhotoPickerControllerCallback callback;
-
 @property (nonatomic, readonly, copy) ALAssetsLibrary *assetsLibrary;
 
 - (IRAQAlbumListViewController *) newAlbumListViewController;

@@ -9,6 +9,7 @@
 #import "IRAQPhotoPickerController.h"
 #import "IRAQPhotoPickerControllerSubclass.h"
 #import "IRAQAlbumListViewController.h"
+#import "IRAQPhotoGridViewController.h"
 #import "UIViewController+IRAQAdditions.h"
 
 @implementation IRAQPhotoPickerController
@@ -61,7 +62,21 @@
 
 - (void) albumListViewController:(IRAQAlbumListViewController *)controller didSelectGroup:(ALAssetsGroup *)group {
 
-	//	?
+	IRAQPhotoGridViewController *gridViewController = [[IRAQPhotoGridViewController alloc] initWithAssetsGroup:group];
+	
+	if (gridViewController && controller.navigationController) {
+		
+		[controller.navigationController pushViewController:gridViewController animated:YES];
+		
+	} else if (self.navigationController) {
+		
+		[self.navigationController pushViewController:gridViewController animated:YES];
+		
+	} else {
+		
+		[NSException raise:NSInternalInconsistencyException format:@"Boo."];
+		
+	}
 
 }
 
