@@ -8,8 +8,8 @@
 
 #import "IRAQPhotoPickerController.h"
 #import "IRAQPhotoPickerControllerSubclass.h"
-
 #import "IRAQAlbumListViewController.h"
+#import "UIViewController+IRAQAdditions.h"
 
 @implementation IRAQPhotoPickerController
 @synthesize callback = _callback;
@@ -67,8 +67,12 @@
 
 - (void) albumListViewController:(IRAQAlbumListViewController *)controller didFailEnumeratingAssetGroupsWithError:(NSError *)error {
 
-	if (self.callback)
-		self.callback(nil, error);
+	[self iraqPerformOnStabilized:^{
+		
+		if (self.callback)
+			self.callback(nil, error);
+
+	}];
 
 }
 

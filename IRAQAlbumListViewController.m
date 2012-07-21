@@ -16,8 +16,6 @@
 @property (nonatomic, readonly, strong) NSArray *assetGroups;
 - (void) reloadAssets;
 
-- (void) performOnStablized:(void(^)(void))block;
-
 @end
 
 
@@ -134,16 +132,6 @@
 	NSCParameterAssert([group isKindOfClass:[ALAssetsGroup class]]);
 	
 	[self.delegate albumListViewController:self didSelectGroup:group];
-
-}
-
-- (void) performOnStablized:(void(^)(void))block {
-
-	if ([self isBeingPresented] || [self isBeingDismissed]) {
-	
-		//	?
-	
-	}
 
 }
 
