@@ -81,8 +81,8 @@
 		self.gridView.delegate = self;
 		self.gridView.dataSource = self;
 		self.gridView.alwaysBounceVertical = YES;
-		self.gridView.allowsSelection = YES;
-		self.gridView.multipleSelection = YES;
+		self.gridView.selectable = YES;
+		self.gridView.allowsMultipleSelection = YES;
 	
 	}
 
@@ -107,7 +107,7 @@
 	AQGridView * const gv = self.gridView;
 	[gv reloadData];
 	
-	NSIndexSet *indices = [gv indicesOfSelectedItems];
+	NSIndexSet *indices = [gv selectionIndexes];
 	[indices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
 		[gv deselectItemAtIndex:idx animated:NO];
 	}];
@@ -123,7 +123,7 @@
 	AQGridView * const gv = self.gridView;
 	[gv reloadData];
 	
-	NSIndexSet *indices = [gv indicesOfSelectedItems];
+	NSIndexSet *indices = [gv selectionIndexes];
 	[indices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
 		[gv deselectItemAtIndex:idx animated:NO];
 	}];
@@ -172,7 +172,7 @@
 	if ([note object] != self.view)
 		return;
 		
-	NSIndexSet *itemIndices = [self.gridView indicesOfSelectedItems];
+	NSIndexSet *itemIndices = [self.gridView selectionIndexes];
 	NSArray *selection = [self.assets objectsAtIndexes:itemIndices];
 	
 	[self.delegate photoGridViewController:self didUpdateSelection:selection];
