@@ -30,7 +30,15 @@
 	
 	_group = group;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGridViewDidChangeSelection:) name:AQGridViewSelectionDidChangeNotification object:nil];
+	
 	return self;
+
+}
+
+- (void) dealloc {
+
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
 }
 
@@ -74,6 +82,7 @@
 		self.gridView.dataSource = self;
 		self.gridView.alwaysBounceVertical = YES;
 		self.gridView.allowsSelection = YES;
+		self.gridView.multipleSelection = YES;
 	
 	}
 
@@ -94,8 +103,33 @@
 - (void) viewWillAppear:(BOOL)animated {
 	
 	[super viewWillAppear:animated];
-	[self.gridView reloadData];
 	
+	AQGridView * const gv = self.gridView;
+	[gv reloadData];
+	
+	NSIndexSet *indices = [gv indicesOfSelectedItems];
+	[indices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+		[gv deselectItemAtIndex:idx animated:NO];
+	}];
+	
+	[self.delegate photoGridViewController:self didUpdateSelection:nil];
+	
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+
+	[super viewDidDisappear:animated];
+	
+	AQGridView * const gv = self.gridView;
+	[gv reloadData];
+	
+	NSIndexSet *indices = [gv indicesOfSelectedItems];
+	[indices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+		[gv deselectItemAtIndex:idx animated:NO];
+	}];
+
+	[self.delegate photoGridViewController:self didUpdateSelection:nil];
+
 }
 
 - (NSUInteger) numberOfItemsInGridView:(AQGridView *)gridView {
@@ -130,9 +164,18 @@
 
 }
 
-- (void) gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index {
+- (void) handleGridViewDidChangeSelection:(NSNotification *)note {
 
-	//	Do something about this, we’re supposed to have multiple selection
+	if (![self isViewLoaded])
+		return;
+
+	if ([note object] != self.view)
+		return;
+		
+	NSIndexSet *itemIndices = [self.gridView indicesOfSelectedItems];
+	NSArray *selection = [self.assets objectsAtIndexes:itemIndices];
+	
+	[self.delegate photoGridViewController:self didUpdateSelection:selection];
 
 }
 

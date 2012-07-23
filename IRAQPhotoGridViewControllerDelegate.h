@@ -11,6 +11,6 @@
 @class IRAQPhotoGridViewController, ALAssetsGroup;
 @protocol IRAQPhotoGridViewControllerDelegate <NSObject>
 
-- (void) photoGridViewController:(IRAQPhotoGridViewController *)controller didUpdateSelection:(NSSet *)selectedAssets;
+- (void) photoGridViewController:(IRAQPhotoGridViewController *)controller didUpdateSelection:(NSArray *)selectedAssets;
 
 @end
