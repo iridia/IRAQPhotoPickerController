@@ -37,6 +37,7 @@
 	
 		UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		numberLabel.textColor = [UIColor grayColor];
+		numberLabel.highlightedTextColor = [UIColor whiteColor];
 		numberLabel.font = [UIFont systemFontOfSize:17.0f];
 		
 		[self.contentView addSubview:numberLabel];
