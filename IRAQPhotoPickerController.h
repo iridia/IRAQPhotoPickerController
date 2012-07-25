@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 typedef void (^IRAQPhotoPickerControllerCallback) (NSArray *selectedAssets, NSError *error);
 
 @interface IRAQPhotoPickerController : UINavigationController
 
-- (IRAQPhotoPickerController *) initWithCompletion:(IRAQPhotoPickerControllerCallback)callback;
+- (IRAQPhotoPickerController *) initWithAssetsLibrary:(ALAssetsLibrary *)library completion:(IRAQPhotoPickerControllerCallback)callback;
 
 @end

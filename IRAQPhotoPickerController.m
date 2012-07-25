@@ -25,15 +25,17 @@
 	
 }
 
-- (IRAQPhotoPickerController *) initWithCompletion:(IRAQPhotoPickerControllerCallback)callback {
-
-	IRAQAlbumListViewController *controller = [self newAlbumListViewController];
+- (IRAQPhotoPickerController *) initWithAssetsLibrary:(ALAssetsLibrary *)library completion:(IRAQPhotoPickerControllerCallback)callback {
 	
-	self = [self initWithRootViewController:controller];
+	self = [self initWithRootViewController:nil];
 	if (!self)
 		return nil;
 	
+	_assetsLibrary = library;
 	_callback = [callback copy];
+	
+	IRAQAlbumListViewController *controller = [self newAlbumListViewController];
+	[self setViewControllers:[NSArray arrayWithObjects:controller, nil] animated:NO];
 	
 	return self;
 
