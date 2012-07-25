@@ -33,6 +33,8 @@
 	_assetsLibrary = library;
 	_assetsGroupType = groupType;
 	
+	self.title = @"Photos";	//	Localisation override point
+	
 	return self;
 	
 }
@@ -51,6 +53,7 @@
 	[super viewDidLoad];
 
 	self.clearsSelectionOnViewWillAppear = YES;
+	self.tableView.rowHeight = 64.0f;
 
 }
 
@@ -87,8 +90,6 @@
 		
 	} failureBlock:^(NSError *error) {
 	
-		NSLog(@"%@", error);
-		
 		[self.delegate albumListViewController:self didFailEnumeratingAssetGroupsWithError:error];
 		
 	}];
@@ -113,6 +114,8 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
 	}
 	
 	ALAssetsGroup *group = (ALAssetsGroup *)[self.assetGroups objectAtIndex:indexPath.row];
@@ -120,7 +123,6 @@
 	
 	cell.textLabel.text = [group valueForProperty:ALAssetsGroupPropertyName];
 	cell.imageView.image = [UIImage imageWithCGImage:group.posterImage];
-	cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
 	
 	return cell;
 	

@@ -30,6 +30,8 @@
 	
 	_group = group;
 	
+	self.title = [group valueForProperty:ALAssetsGroupPropertyName];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleGridViewDidChangeSelection:) name:AQGridViewSelectionDidChangeNotification object:nil];
 	
 	return self;
