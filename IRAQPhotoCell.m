@@ -111,8 +111,8 @@
 	CGRect rect = CGRectInset(self.contentView.bounds, 2.0f, 2.0f);
 	UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
 	
-	imageView.layer.borderColor = [UIColor colorWithWhite:0.5f alpha:1.0f].CGColor;
-	imageView.layer.borderWidth = 1.0f;
+	imageView.layer.borderColor = [UIColor colorWithWhite:0.0f alpha:0.2f].CGColor;
+	imageView.layer.borderWidth = 0.5f;
 	
 	imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	imageView.contentMode = UIViewContentModeScaleAspectFill;
