@@ -90,6 +90,16 @@
 
 }
 
+- (void) viewDidLoad {
+
+	[super viewDidLoad];
+	
+	self.gridView.leftContentInset = 2.0f;
+	self.gridView.rightContentInset = 1.0f;
+	self.gridView.gridHeaderView = [[UIView alloc] initWithFrame:(CGRect){ CGPointZero, (CGSize){ 4.0f, 2.0f }}];
+
+}
+
 - (AQGridView *) gridView {
 
 	return (AQGridView *)self.view;
@@ -142,7 +152,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView:(AQGridView *)gridView {
 
-	return (CGSize){ 80.0f, 80.0f };
+	return (CGSize){ 79.0f, 79.0f };
 
 }
 

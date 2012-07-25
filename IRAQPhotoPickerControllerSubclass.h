@@ -14,8 +14,8 @@
 @interface IRAQPhotoPickerController () <IRAQAlbumListViewControllerDelegate, IRAQPhotoGridViewControllerDelegate>
 
 @property (nonatomic, readonly, copy) IRAQPhotoPickerControllerCallback callback;
-@property (nonatomic, readonly, copy) ALAssetsLibrary *assetsLibrary;
-@property (nonatomic, readonly, copy) NSArray *selectedAssets;
+@property (nonatomic, readonly, strong) ALAssetsLibrary *assetsLibrary;
+@property (nonatomic, readonly, strong) NSArray *selectedAssets;
 
 @property (nonatomic, readonly, strong) IBOutlet UIBarButtonItem *doneItem;
 @property (nonatomic, readonly, strong) IBOutlet UIBarButtonItem *cancelItem;

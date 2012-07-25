@@ -7,6 +7,7 @@
 //
 
 #import "IRAQAlbumListViewController.h"
+#import "IRAQAlbumCell.h"
 
 
 @interface IRAQAlbumListViewController ()
@@ -53,7 +54,7 @@
 	[super viewDidLoad];
 
 	self.clearsSelectionOnViewWillAppear = YES;
-	self.tableView.rowHeight = 64.0f;
+	self.tableView.rowHeight = 56.0f;
 
 }
 
@@ -111,18 +112,14 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	static NSString *CellIdentifier = @"Cell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (!cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-	}
+	IRAQAlbumCell *cell = (IRAQAlbumCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	if (!cell)
+		cell = [[IRAQAlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	
 	ALAssetsGroup *group = (ALAssetsGroup *)[self.assetGroups objectAtIndex:indexPath.row];
 	NSCParameterAssert([group isKindOfClass:[ALAssetsGroup class]]);
-	
-	cell.textLabel.text = [group valueForProperty:ALAssetsGroupPropertyName];
-	cell.imageView.image = [UIImage imageWithCGImage:group.posterImage];
+	cell.assetsGroup = group;
 	
 	return cell;
 	
