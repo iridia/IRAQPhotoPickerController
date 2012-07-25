@@ -11,12 +11,10 @@ Look at the [Sample App](https://github.com/iridia/IRAQPhotoPickerController-Sam
 There’s an `IRAQPhotoPickerController`:
 
 	@interface IRAQPhotoPickerController : UINavigationController
-	
-		- (IRAQPhotoPickerController *) initWithCompletion:(IRAQPhotoPickerControllerCallback)callback;
-	
+	- (IRAQPhotoPickerController *) initWithAssetsLibrary:(ALAssetsLibrary *)library completion:(IRAQPhotoPickerControllerCallback)callback;
 	@end
 
-You can use it in a popover, present it modally, or put it in a container view controller.  The callback gives you an array of `ALAsset` objects, or an `NSError` if anything went wrong.
+You can use it in a popover, present it modally, or put it in a container view controller.  The callback gives you an array of `ALAsset` objects, or an `NSError` if anything went wrong.  Pass `nil` to the `library` if you don’t care about reusing the assets.
 
 ## Licensing
 
