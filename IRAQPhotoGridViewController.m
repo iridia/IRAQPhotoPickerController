@@ -94,9 +94,12 @@
 
 	[super viewDidLoad];
 	
-	self.gridView.leftContentInset = 2.0f;
-	self.gridView.rightContentInset = 1.0f;
-	self.gridView.gridHeaderView = [[UIView alloc] initWithFrame:(CGRect){ CGPointZero, (CGSize){ 4.0f, 2.0f }}];
+	AQGridView * const gv = self.gridView;
+	
+	gv.leftContentInset = 2.0f;
+	gv.rightContentInset = 1.0f;
+	gv.gridHeaderView = [[UIView alloc] initWithFrame:(CGRect){ CGPointZero, (CGSize){ 4.0f, 2.0f }}];
+	gv.gridFooterView = [[UIView alloc] initWithFrame:(CGRect){ CGPointZero, (CGSize){ 4.0f, 2.0f }}];
 
 }
 

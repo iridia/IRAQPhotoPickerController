@@ -25,6 +25,7 @@
 	
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+	self.textLabel.font = [UIFont boldSystemFontOfSize:17.0f];
 	
 	return self;
 
@@ -75,7 +76,7 @@
 	UILabel * const nl = self.numberLabel;
 	[nl sizeToFit];
 	
-	CGFloat const padding = 10.0f;
+	CGFloat const padding = 6.0f;
 	CGRect const tlFrame = tl.frame;
 	tl.frame = (CGRect){
 		tlFrame.origin,
