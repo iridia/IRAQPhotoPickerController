@@ -8,6 +8,7 @@
 
 #import "AQGridViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface IRAQPhotoCell : AQGridViewCell
 
